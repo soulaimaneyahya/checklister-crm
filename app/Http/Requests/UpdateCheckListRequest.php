@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCheckListRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateCheckListRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,17 @@ class UpdateCheckListRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'max:255',
+                Rule::unique('check_lists')
+                    ->where(function ($query) {
+                        return $query->where('check_list_group_id', $this->check_list_group->id);
+                    })
+                    ->ignore($this->check_list->id)
+            ],
+            'description' => [
+                'required',
+                'max:500'
+            ]
         ];
     }
 }

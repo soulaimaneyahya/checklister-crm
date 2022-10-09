@@ -2,49 +2,42 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\CheckList;
-use Illuminate\Http\Request;
-
+use App\Models\CheckListGroup;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StoreCheckListRequest;
+use App\Http\Requests\UpdateCheckListRequest;
 
 class CheckListController extends Controller
 {
-    public function index(): View
+    public function create(CheckListGroup $checkListGroup): View
     {
-        $checkLists = CheckList::all();
-        return view('admin.checkLists.index', compact('checkLists'));
+        return view('admin.checklists.create', compact('checkListGroup'));
     }
 
-    public function create(): View
+    public function store(StoreCheckListRequest $request, CheckListGroup $checkListGroup): RedirectResponse
     {
-        return view('admin.checkLists.create');
+        $checkList = $checkListGroup->checklists()->create($request->validated());
+        return redirect()->route('admin.check_list_groups.check_lists.edit', [$checkListGroup, $checkList])->with('alert-success', 'CheckList Created');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function edit(CheckListGroup $checkListGroup, CheckList $checkList)
     {
-        return redirect()->route('checkLists.index');
+        return view('admin.checklists.edit', compact('checkList', 'checkListGroup'));
     }
 
-    public function show(CheckList $checkList): View
+    public function update(UpdateCheckListRequest $request, CheckListGroup $checkListGroup, CheckList $checkList): RedirectResponse
     {
-        return view('admin.checkLists.show', compact('checkList'));
+        $checkList->update($request->validated());
+        return redirect()->route('admin.check_list_groups.check_lists.edit', [$checkListGroup, $checkList])->with('alert-warning', 'CheckList Updated');
     }
 
-    public function edit(CheckList $checkList): View
-    {
-        return view('admin.checkLists.edit', compact('checkList'));
-    }
-
-    public function update(Request $request, CheckList $checkList): RedirectResponse
-    {
-        return redirect()->route('checkLists.index');
-    }
-
-    public function destroy(CheckList $checkList): RedirectResponse
+    public function destroy(CheckListGroup $checkListGroup, CheckList $checkList): RedirectResponse
     {
         $checkList->delete();
-        return redirect()->route('checkLists.index');
+        return redirect()->route('admin.check_list_groups.edit', $checkListGroup)->with('alert-info', 'CheckList Deleted');
     }
 }

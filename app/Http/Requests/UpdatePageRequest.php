@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePageRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdatePageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,15 @@ class UpdatePageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => [
+                'required',
+                'max:255',
+                Rule::unique('pages')->ignore($this->page->id)
+            ],
+            'content' => [
+                'required',
+                'max:500'
+            ]
         ];
     }
 }

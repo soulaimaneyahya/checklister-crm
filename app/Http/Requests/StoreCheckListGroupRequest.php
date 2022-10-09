@@ -13,7 +13,7 @@ class StoreCheckListGroupRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreCheckListGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'max:255', 'unique:check_list_groups'],
+            'description' => [
+                'required',
+                'max:500'
+            ]
         ];
     }
 }
