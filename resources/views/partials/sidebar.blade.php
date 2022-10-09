@@ -3,6 +3,7 @@
         <a href="/" class="text-decoration-none text-white">APP</a>
     </div>
     <ul class="c-sidebar-nav">
+        @if (auth()->user()->is_admin)
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="">
                 <svg class="c-sidebar-nav-icon">
@@ -10,6 +11,14 @@
                 </svg> <span>{{ __('Manage Users') }}</span>
             </a>
         </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-copy') }}"></use>
+                </svg> <span>{{ __('Pages') }}</span>
+            </a>
+        </li>
+        @endif
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <svg class="c-sidebar-nav-icon">
