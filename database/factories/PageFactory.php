@@ -45,4 +45,17 @@ class PageFactory extends Factory
             'title'      => 'Get Consultation'
         ]);
     }
+
+    /**
+     * page
+     *
+     * @return void
+     */
+    public function lorem_ipsum()
+    {
+        return $this->state(fn (array $attributes) => [
+            'title' => 'Lorem ipsum.',
+            'content' => 'Lorem ipsum dolor sit amet.'
+        ]);
+    }
 }

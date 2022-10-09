@@ -19,4 +19,15 @@ class CheckListGroup extends Model
     {
         return $this->hasMany(CheckList::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function(CheckListGroup $group){
+            $group->checklists()->delete();
+        });
+        static::restoring(function(CheckListGroup $group){
+            $group->checklists()->restore();
+        });
+    }
 }

@@ -21,4 +21,17 @@ class CheckListFactory extends Factory
             'description' => fake()->paragraph($nbSentences = 3)
         ];
     }
+
+    /**
+     * check list
+     *
+     * @return void
+     */
+    public function lorem_ipsum()
+    {
+        return $this->state(fn (array $attributes) => [
+            'name' => 'Lorem ipsum.',
+            'description' => 'Lorem ipsum dolor sit amet.'
+        ]);
+    }
 }

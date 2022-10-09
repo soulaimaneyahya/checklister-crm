@@ -9,3 +9,11 @@ User::create([
     'is_admin' => 1,
 ]);
 ```
+---
+### PHPUnit Testig
+I added tests for the controller functions. You can run 
+
+```bash
+php vendor/bin/phpunit --testdox
+```
+to test them out.
