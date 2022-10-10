@@ -47,16 +47,16 @@ npm run dev
 | managing tasks                            | Task -a                                    | ✅ |
 | pages management                          |                                            | ✅ |
 | User registration and welcome page        |                                            | ✅ |
-| customers list                            |                                            ||
+| customers list                            |                                            | ✅ |
 
 ### Additional Admin sections:
 - Customer data section where I can see customer registration data (name, email,
-website) + add note and tags.  ✅ 
-- Customers Resource APIs
+website) + add note and tags. ✅
+- Customers Resource APIs ✅
 - Order section where I can see all the customer in paid plan.
 - Integration with Stripe for payments
 - Integration with Google Analytics (works fine a javascript)
-- Integration with email marketing provider
+- Integration with email marketing provider ✅
 - Multi-language (not for now but in the future)
 
 ----- 
