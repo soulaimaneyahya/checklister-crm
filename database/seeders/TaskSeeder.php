@@ -15,10 +15,17 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
-        $tasksCount = max((int)$this->command->ask("How many tasks would you like ?", 50), 1);
+        $tasksCount = max((int)$this->command->ask("How many tasks would you like ?", 20), 1);
         $lists = CheckList::all();
+        if ($lists->count() === 0) {
+            $this->command->info('There are no checklists, so no tasks will be added');
+            return;
+        }
         Task::factory($tasksCount)->make()->each(function($task) use($lists) {
-            $task->check_list_id = $lists->random()->id;
+            $list = $lists->random();
+            $position = $list->tasks()->max('position') + 1;
+            $task->position = $position;
+            $task->check_list_id = $list->id;
             $task->save();
         });
     }
