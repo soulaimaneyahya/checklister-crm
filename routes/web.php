@@ -16,8 +16,8 @@ use App\Http\Controllers\User\CheckListController as CheckListUserController;
 |--------------------------------------------------------------------------
 */
 
-// Route::permanentRedirect('/amazon', '/welcome');
-Route::permanentRedirect('/', '/welcome');
+// Route::permanentRedirect('/amazon', '/welcome'); // with status 301
+Route::redirect('/', '/welcome');
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){

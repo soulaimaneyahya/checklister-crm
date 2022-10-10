@@ -19,7 +19,11 @@ class MenuComposer
         $pages = \App\Models\Page::all();
         $view->with('pages', $pages);
         
-        $menu = CheckListGroup::with('checklists')->get();
+        $menu = CheckListGroup::with([
+            'checklists' => function($query) {
+                $query->whereNull('user_id');
+            }
+        ])->get();
         $view->with('admin_menu', $menu);
 
         $groups = [];
