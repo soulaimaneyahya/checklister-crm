@@ -15,10 +15,29 @@ class TasksTable extends Component
         return view('livewire.tasks-table', compact('tasks'));
     }
 
-    public function updateTaskOrder($tasks)
+    public function task_up($task_id)
     {
-        foreach ($tasks as $task) {
-            Task::find($task['value'])->update(['position' => $task['order']]);
+        $task = Task::find($task_id);
+        if ($task) {
+            Task::where('position', $task->position -1)->update([
+                'position' => $task->position
+            ]);
+            $task->update([
+                'position' => $task->position -1
+            ]);
+        }
+    }
+
+    public function task_down($task_id)
+    {
+        $task = Task::find($task_id);
+        if ($task) {
+            Task::where('position', $task->position +1)->update([
+                'position' => $task->position
+            ]);
+            $task->update([
+                'position' => $task->position +1
+            ]);
         }
     }
 }

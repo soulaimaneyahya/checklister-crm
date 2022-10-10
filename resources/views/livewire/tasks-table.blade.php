@@ -9,7 +9,7 @@
                     <td scope="col">{{ __('Added at') }}</td>
                 </tr>
             </thead>
-            <tbody wire:sortable="updateTaskOrder">
+            <tbody>
             @forelse ($tasks as $key => $task)
                 @include('admin.tasks.partials.task')
             @empty
