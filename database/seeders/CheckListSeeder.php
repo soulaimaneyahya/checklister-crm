@@ -15,7 +15,7 @@ class CheckListSeeder extends Seeder
      */
     public function run()
     {
-        $listsCount = max((int)$this->command->ask("How many checklists would you like ?", 5), 1);
+        $listsCount = max((int)$this->command->ask("How many lists would you like ?", 5), 1);
         $groups = CheckListGroup::all();
         $lists = CheckList::factory($listsCount)->make()->each(function($list) use($groups) {
             $list->check_list_group_id = $groups->random()->id;

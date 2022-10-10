@@ -8,11 +8,11 @@
             </div>
             <div class="form-group">
                 <label for="description">{{ __('CheckList Description') }}</label>
-                <textarea class="form-control" name="description" id="textarea-desc" maxlength="500" placeholder="CheckList Description">{{ old('description', $checkList->description ?? '') }}</textarea>
+                <textarea class="form-control" id="textarea-desc-ckeditor" name="description" maxlength="500" placeholder="CheckList Description">{{ old('description', $checkList->description ?? '') }}</textarea>
             </div>
-            @if ($errors->any())
+            @if ($errors->storelist->any())
             <ul>
-                @foreach ($errors->all() as $error)
+                @foreach ($errors->storelist->all() as $error)
                     <li class="text-danger">{{ $error }}</li>
                 @endforeach
             </ul>

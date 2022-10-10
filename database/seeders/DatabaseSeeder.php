@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             CheckListGroupSeeder::class,
             CheckListSeeder::class,
+            TaskSeeder::class
         ]);
         $this->command->info("---------------------------------- thanks seeder");
     }

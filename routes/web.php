@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CheckListController;
 use App\Http\Controllers\Admin\CheckListGroupController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -26,5 +27,6 @@ Route::group(['middleware' => ['auth']], function(){
         Route::resource('pages', PageController::class)->only(['edit', 'update']);
         Route::resource('check_list_groups', CheckListGroupController::class)->except(['index', 'show']);
         Route::resource('check_list_groups.check_lists', CheckListController::class)->except(['index', 'show']);
+        Route::resource('check_lists.tasks', TaskController::class)->except(['index', 'show']);
     });
 });

@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCheckListRequest extends FormRequest
+class StoreTaskRequest extends FormRequest
 {
-    protected $errorBag = 'storelist';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,9 +26,9 @@ class StoreCheckListRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255', 
-                Rule::unique('check_lists')
+                Rule::unique('tasks')
                 ->where(function ($query) {
-                    return $query->where('check_list_group_id', $this->check_list_group->id);
+                    return $query->where('check_list_id', $this->check_list->id);
                 })
             ],
             'description' => [
