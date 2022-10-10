@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Models\Page;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\CheckList;
 use App\Models\CheckListGroup;
@@ -30,5 +31,10 @@ abstract class TestCase extends BaseTestCase
     protected function createDummyPage(): Page
     {
         return Page::factory()->lorem_ipsum()->create();
+    }
+
+    protected function createDummyTask(): Task
+    {
+        return Task::factory()->lorem_ipsum()->make();
     }
 }

@@ -15,8 +15,25 @@ class CheckList extends Model
         'description',
         'check_list_group_id'
     ];
+    
     public function checkListGroup()
     {
         return $this->belongsTo(CheckListGroup::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function(CheckList $list){
+            $list->tasks()->delete();
+        });
+        static::restoring(function(CheckList $list){
+            $list->tasks()->restore();
+        });
     }
 }

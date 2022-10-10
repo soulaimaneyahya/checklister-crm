@@ -38,7 +38,7 @@ class CheckListGroupTest extends TestCase
             'name' => 'Lorem ipsum.',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, neque.'
         ];
-        $group = $this->post('/admin/check_list_groups', $params)
+        $this->post('/admin/check_list_groups', $params)
             ->assertStatus(302)
             ->assertSessionHas('alert-success')
             ->assertRedirect("/admin/check_list_groups/{$params['id']}/edit");

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CheckListGroup>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
  */
-class CheckListGroupFactory extends Factory
+class TaskFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,20 +18,20 @@ class CheckListGroupFactory extends Factory
     {
         return [
             'name' => fake()->sentence($nbWords = 1),
-            'description' => fake()->paragraph($nbSentences = 3)
+            'description' => fake()->paragraph($nbSentences = 2)
         ];
     }
 
     /**
-     * check list group
+     * page
      *
      * @return void
      */
     public function lorem_ipsum()
     {
         return $this->state(fn (array $attributes) => [
-            'name' => 'Lorem ipsum.',
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et fermentum dui. Ut orci quam.'
+            'name' => 'Task ipsum.',
+            'description' => 'Task Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, neque.'
         ]);
     }
 }

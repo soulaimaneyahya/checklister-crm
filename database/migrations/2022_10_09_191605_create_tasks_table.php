@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('check_lists', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('check_list_id')->constrained();
             $table->string('name');
             $table->tinyText('description', 500);
-            $table->foreignId('check_list_group_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('check_lists');
+        Schema::dropIfExists('tasks');
     }
 };

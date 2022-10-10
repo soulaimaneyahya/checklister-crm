@@ -26,7 +26,8 @@ class CheckListController extends Controller
 
     public function edit(CheckListGroup $checkListGroup, CheckList $checkList)
     {
-        return view('admin.checklists.edit', compact('checkList', 'checkListGroup'));
+        $tasks = $checkList->tasks()->paginate(5);
+        return view('admin.checklists.edit', compact('checkList', 'checkListGroup', 'tasks'));
     }
 
     public function update(UpdateCheckListRequest $request, CheckListGroup $checkListGroup, CheckList $checkList): RedirectResponse

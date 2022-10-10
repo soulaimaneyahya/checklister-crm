@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCheckListGroupRequest extends FormRequest
+class UpdateTaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,10 @@ class UpdateCheckListGroupRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255', 
-                Rule::unique('check_list_groups')
-                ->ignore($this->check_list_group->id)
+                Rule::unique('tasks')
+                ->where(function ($query) {
+                    return $query->where('check_list_id', $this->check_list->id);
+                })->ignore($this->task->id)
             ],
             'description' => [
                 'required',
