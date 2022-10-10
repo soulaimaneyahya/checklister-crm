@@ -4,9 +4,7 @@ Creating an adminpanel-like system to manage checklists, tasks, CRUD operations 
 ---
 ## Screenshots
 
-<img src="https://dummyimage.com/700x300/f2f2f2/3b3b3b.png&text=Project" />
-
-<img src="https://dummyimage.com/700x300/f2f2f2/3b3b3b.png&text=Project" />
+<img src="./public/img/1.png" />
 
 ---
 
@@ -41,12 +39,13 @@ npm run dev
 | managing checklist groups and checklists  | CheckList -a && CheckListGroup -a          | ✅ |
 | managing tasks                            | Task -a                                    | ✅ |
 | pages management                          |                                            | ✅ |
-| User registration and welcome page        |                                            ||
+| User registration and welcome page        |                                            | ✅ |
 | customers list                            |                                            ||
 
 ### Additional Admin sections:
 - Customer data section where I can see customer registration data (name, email,
-website) + add note and tags.
+website) + add note and tags.  ✅ 
+- Customers Resource APIs
 - Order section where I can see all the customer in paid plan.
 - Integration with Stripe for payments
 - Integration with Google Analytics (works fine a javascript)

@@ -5,7 +5,7 @@
     <ul class="c-sidebar-nav">
         @if (auth()->user()->is_admin)
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('welcome') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('admin.users.index') }}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-copy') }}"></use>
                 </svg> <span>{{ __('Manage Users') }}</span>
@@ -48,7 +48,7 @@
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
                     </svg>
-                    {{ $list->name }}
+                    <span>{{ $list->name }}</span>
                 </a>
             </li>
             @endforeach
@@ -64,10 +64,11 @@
                 ])
                 @foreach ($group['checklists'] as $list)
                 <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link">
-                        <span>
-                            {{ $list['name'] }}
-                        </span>
+                    <a class="c-sidebar-nav-link" style="padding: 15px 85px;" href="{{ route('users.check_lists.show', $list['id']) }}">
+                        <svg class="c-sidebar-nav-icon">
+                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
+                        </svg>
+                        <span>{{ $list['name'] }}</span>
                     </a>
                 </li>
                 @endforeach

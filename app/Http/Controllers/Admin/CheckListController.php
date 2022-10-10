@@ -24,7 +24,7 @@ class CheckListController extends Controller
         return redirect()->route('admin.check_list_groups.check_lists.edit', [$checkListGroup, $checkList])->with('alert-success', 'CheckList Created');
     }
 
-    public function edit(CheckListGroup $checkListGroup, CheckList $checkList)
+    public function edit(CheckListGroup $checkListGroup, CheckList $checkList): View
     {
         return view('admin.checklists.edit', compact('checkList', 'checkListGroup'));
     }
