@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "livewire/livewire": "^2.10",
+        "spatie/laravel-newsletter": "^4.11",
         "yajra/laravel-datatables-oracle": "^10.0"
     },
     "require-dev": {
