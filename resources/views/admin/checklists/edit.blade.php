@@ -40,29 +40,7 @@
                     </a>
                 </div>
             </div>
-            <div class="card-body p-3 m-0">
-                <table class="table table-responsive-sm table-hover table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <td scope="col"></td>
-                            <td scope="col">{{ __('Name') }}</td>
-                            <td scope="col">{{ __('Edit / Delete') }}</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @forelse ($tasks as $key => $task)
-                        @include('admin.tasks.partials.task')
-                    @empty
-                        <tr>
-                            <td colspan="2" class="text-center">{{ __('No Tasks Found') }}</td>
-                        </tr>
-                    @endforelse
-                    </tbody>
-                </table>
-            </div>
-            <div class="px-3">
-                {{ $tasks->links() }}
-            </div>
+            @livewire('tasks-table', ['checkList' => $checkList])
         </div>
     </div>
 </div>

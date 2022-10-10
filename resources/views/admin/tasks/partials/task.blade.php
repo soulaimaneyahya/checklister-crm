@@ -1,4 +1,4 @@
-<tr>
+<tr wire:sortable.item="{{ $task->id }}" wire:key="task-{{ $task->id }}">
     <td>
         <a wire:click.prevent="task_up({{ $task->id }})" href="#">
             &uarr;
@@ -8,7 +8,6 @@
         </a>
     </td>
     <td>{{ $task->name }}</td>
-    {{-- <td>{!! $task->description !!}</td> --}}
     <td>
         <a href="{{ route('admin.check_lists.tasks.edit', [$checkList, $task]) }}" class="btn btn-sm btn-primary"> {{ __('Edit') }}</a>
         <form action="{{ route('admin.check_lists.tasks.destroy', [$checkList, $task]) }}" method="POST" class="mx-2 d-inline">

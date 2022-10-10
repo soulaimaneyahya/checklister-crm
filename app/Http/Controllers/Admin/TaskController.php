@@ -20,7 +20,8 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request, CheckList $checkList): RedirectResponse
     {
-        $task = $checkList->tasks()->create($request->validated());
+        $position = $checkList->tasks()->max('position') + 1;
+        $task = $checkList->tasks()->create($request->validated() + ['position' => $position]);
         return redirect()
             ->route('admin.check_lists.tasks.edit', [
                 $checkList, $task
@@ -43,6 +44,8 @@ class TaskController extends Controller
 
     public function destroy(CheckList $checkList, Task $task): RedirectResponse
     {
+        // re-order on delete
+        $checkList->tasks()->where('position', '>', $task->position)->decrement('position', 1);
         $task->delete();
         return redirect()->route('tasks.index');
     }

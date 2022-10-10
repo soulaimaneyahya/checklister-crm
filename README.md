@@ -39,7 +39,7 @@ npm run dev
 | Add adminpanel design                     | Using CoreUI free theme                    | ✅ |
 | Set up Roles and Permissions              | isAdmin Middleware                         | ✅ |
 | managing checklist groups and checklists  | CheckList -a && CheckListGroup -a          | ✅ |
-| managing tasks                            | Task -a                                    ||
+| managing tasks                            | Task -a                                    | ✅ |
 | pages management                          |                                            ||
 | User registration and welcome page        |                                            ||
 | customers list                            |                                            ||

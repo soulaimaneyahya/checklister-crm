@@ -20,22 +20,6 @@
             padding-top: 8px !important;
             padding-bottom: 8px !important;
         }
-        .IndexTable {
-            width: 4% !important;
-        }
-
-        .page-footer {
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            position: fixed;
-            z-index: 5;
-            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.23);
-            border-top: 1px solid rgba(0, 0, 0, 0.1176470588);
-        }
-        a {
-            color: rgb(51, 51, 51)
-        }
         .c-active {
             text-decoration: underline !important;
         }
@@ -44,6 +28,7 @@
             max-height: 120px !important;
         }
     </style>
+    @livewireStyles
 </head>
 <body class="c-app">
     @auth @include('partials.sidebar') @endauth 
@@ -60,5 +45,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js" integrity="sha512-yUNtg0k40IvRQNR20bJ4oH6QeQ/mgs9Lsa6V+3qxTj58u2r+JiAYOhOW0o+ijuMmqCtCEg7LZRA+T4t84/ayVA==" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@coreui/coreui@3.4.0/dist/js/coreui.min.js"></script>
     @yield('scripts')
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+
 </body>
 </html>
