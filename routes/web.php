@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController as HomePage;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +15,14 @@ use App\Http\Controllers\HomeController;
 |--------------------------------------------------------------------------
 */
 
-// Route::permanentRedirect('/amazon', 'home');
-Route::get('/', function () {
-    return view('index');
-});
+// Route::permanentRedirect('/amazon', '/welcome');
+Route::permanentRedirect('/', '/welcome');
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 Route::group(['middleware' => ['auth']], function(){
+    Route::get('welcome', [HomePage::class, 'welcome'])->name('welcome');
+    Route::get('consultation', [HomePage::class, 'consultation'])->name('consultation');
+
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function(){
         Route::resource('pages', PageController::class)->only(['edit', 'update']);
         Route::resource('check_list_groups', CheckListGroupController::class)->except(['index', 'show']);

@@ -8,7 +8,19 @@ use Tests\TestCase;
 class TaskTest extends TestCase
 {
     use RefreshDatabase;
-
+    /**
+     * A basic feature test home.
+     *
+     * @return void
+     */
+    public function test_home()
+    {
+        $user = $this->user();
+        $this->actingAs($user);
+        
+        $response = $this->get('/welcome');
+        $response->assertStatus(200);
+    }
     /**
      * A basic feature test example.
      *

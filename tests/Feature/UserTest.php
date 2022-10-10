@@ -18,7 +18,7 @@ class UserTest extends TestCase
         $user = $this->user();
         $this->actingAs($user);
         
-        $response = $this->get('/home');
-        $response->assertSeeText('You are logged in!');
+        $response = $this->get('/welcome');
+        $response->assertStatus(200);
     }
 }

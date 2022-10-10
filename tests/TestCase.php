@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\CheckList;
 use App\Models\CheckListGroup;
+use Database\Seeders\PageSeeder;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -15,6 +16,7 @@ abstract class TestCase extends BaseTestCase
         
     protected function user() : User
     {
+        $this->seed(PageSeeder::class);
         return User::factory()->admin()->create();
     }
 

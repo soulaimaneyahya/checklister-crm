@@ -8,15 +8,20 @@ use Tests\TestCase;
 class CheckListGroupTest extends TestCase
 {
     use RefreshDatabase;
-
+    /**
+     * A basic feature test home.
+     *
+     * @return void
+     */
     public function test_home()
     {
         $user = $this->user();
-        $this->actingAs($user);        
-        $response = $this->get("/home");
-        $response->assertSeeText('You are logged in!');
+        $this->actingAs($user);
+        
+        $response = $this->get('/welcome');
+        $response->assertStatus(200);
     }
-
+    
     public function test_create()
     {
         $user = $this->user();

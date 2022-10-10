@@ -1,11 +1,11 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="text-center my-3 lead">
-        <a href="{{ route('home') }}" class="text-decoration-none text-white">APP</a>
+        <a href="{{ route('welcome') }}" class="text-decoration-none text-white">APP</a>
     </div>
     <ul class="c-sidebar-nav">
         @if (auth()->user()->is_admin)
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('home') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('welcome') }}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-copy') }}"></use>
                 </svg> <span>{{ __('Manage Users') }}</span>

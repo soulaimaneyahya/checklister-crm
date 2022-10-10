@@ -10,10 +10,15 @@ User::create([
 ]);
 ```
 ---
-### PHPUnit Testig
+### Testig
 I added tests for the controller functions. You can run 
 
 ```bash
 php vendor/bin/phpunit --testdox
 ```
 to test them out.
+
+WeCan tests our database with a successful seeder that generates complete system data
+```
+php artisan db:seed
+```

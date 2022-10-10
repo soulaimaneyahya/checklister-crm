@@ -17,7 +17,7 @@ class CheckListFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->sentence($nbWords = 2),
+            'name' => fake()->sentence($nbWords = 1),
             'description' => fake()->paragraph($nbSentences = 3)
         ];
     }

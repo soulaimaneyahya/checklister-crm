@@ -12,10 +12,10 @@
     </button>
     <ul class="c-header-nav ml-auto mr-4">
         <li class="c-header-nav-item">
-            <a class="c-header-nav-link" href="{{ route('home') }}">{{ __('Get Consultation') }}</a>
+            <a class="c-header-nav-link" href="{{ route('consultation') }}">{{ __('Get Consultation') }}</a>
         </li>
         <li class="c-header-nav-item d-md-down-none mx-2">
-            <a class="c-header-nav-link" href="{{ route('home') }}">
+            <a class="c-header-nav-link" href="{{ route('welcome') }}">
                 <svg class="c-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-settings') }}"></use>
                 </svg>
