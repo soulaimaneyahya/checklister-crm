@@ -6,6 +6,7 @@
                     <td scope="col"></td>
                     <td scope="col">{{ __('Name') }}</td>
                     <td scope="col">{{ __('Edit / Delete') }}</td>
+                    <td scope="col">{{ __('Added at') }}</td>
                 </tr>
             </thead>
             <tbody wire:sortable="updateTaskOrder">

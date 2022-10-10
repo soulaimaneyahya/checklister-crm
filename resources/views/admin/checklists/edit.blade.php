@@ -7,7 +7,15 @@
             <form action="{{ route('admin.check_list_groups.check_lists.update', [$checkListGroup, $checkList]) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="card-header">{{ __('Edit Check List') }}</div>
+                <div class="card-header">
+                    {{ __('Edit Check List') }}
+                    @badge([
+                        'type' => 'danger',
+                        'text' => 'white',
+                        'show' => now()->diffInMinutes($checkListGroup->created_at) < 5
+                    ]) new !
+                    @endbadge
+                </div>
                 @include('admin.checklists.partials.form')
                 <div class="card-footer">
                     <button class="btn btn-sm btn-primary" type="submit"> {{ __('Update') }}</button>

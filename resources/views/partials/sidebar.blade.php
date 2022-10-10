@@ -19,15 +19,8 @@
             </a>
             <ul class="c-sidebar-nav-dropdown-items">
                 @foreach ($pages as $page)
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" style="padding: 15px 85px;"
-                    href="{{ route('admin.pages.edit', $page) }}">
-                        <svg class="c-sidebar-nav-icon">
-                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
-                        </svg>
-                        {{ $page->title }}
-                    </a>
-                </li>
+                @page(['page' => $page])
+                @endpage
                 @endforeach
             </ul>
         </li>
@@ -39,59 +32,46 @@
             </a>
         </li>
         @foreach ($admin_menu as $group)
-        <li class="c-sidebar-nav-item c-sidebar-nav-dropdown c-show">
-            {{-- c-sidebar-nav-dropdown-toggle  --}}
-            <a class="c-sidebar-nav-link"
-            href="{{ route('admin.check_list_groups.edit', $group) }}">
-                <svg class="c-sidebar-nav-icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-folder-open') }}"></use>
-                </svg> {{ $group->name }}
-            </a>
-            <ul class="c-sidebar-nav-dropdown-items">
-                @foreach ($group->checklists as $list)
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" style="padding: 15px 85px;"
-                       href="{{ route('admin.check_list_groups.check_lists.edit', [$group, $list]) }}">
-                        <svg class="c-sidebar-nav-icon">
-                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
-                        </svg>
-                        {{ $list->name }}
-                    </a>
-                </li>
-                @endforeach
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" style="padding: 15px 85px;"
-                       href="{{ route('admin.check_list_groups.check_lists.create', $group) }}">
-                        <svg class="c-sidebar-nav-icon">
-                            <use
-                                xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-note-add') }}"></use>
-                        </svg>
-                        {{ __('New List') }}</a>
-                </li>
-            </ul>
-        </li>
+        @menu([
+            'group' => $group,
+            'group_name' => $group->name,
+            'is_admin' => TRUE,
+            ])
+            @slot('group_href')
+             {{ route('admin.check_list_groups.edit', $group) }}
+            @endslot
+            @foreach ($group->checklists as $list)
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" 
+                style="padding: 15px 85px;"
+                href="{{ route('admin.check_list_groups.check_lists.edit', [$group, $list]) }}">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
+                    </svg>
+                    {{ $list->name }}
+                </a>
+            </li>
+            @endforeach
+        @endmenu
         @endforeach
         @else
             @foreach($user_menu as $group)
-            <li class="c-sidebar-nav-item c-sidebar-nav-dropdown c-show">
-                <a class="c-sidebar-nav-link">
-                    <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-folder-open') }}"></use>
-                    </svg>
-                    <span>{{ $group['name'] }}</span>
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @foreach ($group['checklists'] as $checklist)
-                        <li class="c-sidebar-nav-item">
-                            <a class="c-sidebar-nav-link">
-                                <span>
-                                    {{ $checklist['name'] }}
-                                </span>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
+            @menu([
+                'group' => $group,
+                'group_name' => $group['name'],
+                'is_admin' => FALSE,
+                'group_href' => '#',
+                ])
+                @foreach ($group['checklists'] as $list)
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link">
+                        <span>
+                            {{ $list['name'] }}
+                        </span>
+                    </a>
+                </li>
+                @endforeach
+            @endmenu
             @endforeach
         @endif
 

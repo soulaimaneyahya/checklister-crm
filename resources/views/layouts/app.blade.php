@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="https://pngimg.com/uploads/circle/circle_PNG36.png" type="image/png">
-
     <!-- CoreUI CSS -->
     <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui@3.4.0/dist/css/coreui.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css" integrity="sha512-n+g8P11K/4RFlXnx2/RW1EZK25iYgolW6Qn7I0F96KxJibwATH3OoVCQPh/hzlc4dWAwplglKX8IVNVMWUUdsw==" crossorigin="anonymous" />
@@ -35,7 +34,13 @@
     <div class="c-wrapper c-fixed-components">
         @include('partials.header')
         <main class="c-main p-5 m-0">
-            @include('components.alert')
+            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                @if(Session::has('alert-' . $msg))
+                    @component('components.alert', ['msg' => $msg])
+                    
+                    @endcomponent
+                @endif
+            @endforeach
             @yield('content')
         </main>
     </div>
@@ -47,6 +52,5 @@
     @yield('scripts')
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
-
 </body>
 </html>
