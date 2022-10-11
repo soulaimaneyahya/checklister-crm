@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\isRegisterMiddleware;
 use App\Http\Middleware\LastActionUserMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -66,6 +67,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is_admin' => isAdmin::class,
-        'save_last_action_at' => LastActionUserMiddleware::class
+        'save_last_action_at' => LastActionUserMiddleware::class,
+        'is_register' => isRegisterMiddleware::class,
     ];
 }

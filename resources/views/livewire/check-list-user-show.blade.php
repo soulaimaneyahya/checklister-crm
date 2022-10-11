@@ -1,5 +1,16 @@
 <tbody>
     @forelse ($checkList->tasks->whereNull('user_id') as $task)
+    @if ($loop->iteration == 6 && (!auth()->user()->payment || auth()->user()->payment->payment_status != "approved"))
+    <tr>
+        <td colspan="3" class="text-center py-4">
+            <h3 class="my-0 p-0">{{ __('You are limited at 5 tasks per checklist') }}</h3>
+            <div>
+                <img src="http://mgjansen.com/wp-content/uploads/2021/11/82921.png" width="125" alt="no-image" class="my-3"/>
+                <a href="/checkout" class="btn btn-dark my-0">{{ __('Unlock all now') }}</a>
+            </div>
+        </td>
+    </tr>
+    @elseif($loop->iteration < 6 || (auth()->user()->payment && auth()->user()->payment->payment_status == "approved"))
     <tr>
         <td>
             <div class="form-check">
@@ -21,6 +32,7 @@
     <tr class="d-none" id="task-description-{{ $task->id }}">
         <td colspan="3" class="p-3">{!! $task->description !!}</td>
     </tr>
+    @endif
     @empty
         <tr>
             <td colspan="3" class="text-center">{{ __('No Tasks Found') }}</td>

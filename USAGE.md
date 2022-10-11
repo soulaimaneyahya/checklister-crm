@@ -22,3 +22,14 @@ WeCan tests our database with a successful seeder that generates complete system
 ```
 php artisan db:seed
 ```
+
+### User Payment
+
+Using php tinker
+
+- $user = User::with('payment')->find(2);
+- $user->payment->payment_status;
+- $payment = Payment::where('user_id', $user->id)->first();
+- $payment->payment_status = "cancelled";
+- $payment->save();
+- $user->payment && $user->payment->payment_status == "approved"; # T || F

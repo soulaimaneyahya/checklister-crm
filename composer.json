@@ -11,7 +11,9 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
+        "league/omnipay": "^3.2",
         "livewire/livewire": "^2.10",
+        "omnipay/paypal": "^3.0",
         "spatie/laravel-medialibrary": "^10.5",
         "spatie/laravel-newsletter": "^4.11",
         "yajra/laravel-datatables-oracle": "^10.0"

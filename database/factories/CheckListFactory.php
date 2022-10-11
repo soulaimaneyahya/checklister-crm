@@ -18,7 +18,8 @@ class CheckListFactory extends Factory
     {
         return [
             'name' => fake()->sentence($nbWords = 1),
-            'description' => fake()->paragraph($nbSentences = 3)
+            'description' => fake()->paragraph($nbSentences = 3),
+            'created_at' => fake()->dateTimeBetween('-2 weeks')
         ];
     }
 

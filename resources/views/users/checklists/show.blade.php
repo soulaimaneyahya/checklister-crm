@@ -12,7 +12,16 @@
 <div class="row p-0 m-0 justify-content-center">
     <div class="col-md-12 p-0 m-0">
         <div class="card">
-            <div class="card-header">{{ __('Check List: ') }} ({{ $checkList->name }})</div>
+            <div class="card-header d-flex justify-content-between">
+                <strong>
+                    {{ __('CheckList: ') }}{{ $checkList->name }}
+                </strong>
+                <strong>
+                    @if (auth()->user()->payment && auth()->user()->payment->payment_status == "approved")
+                    ☑️ Pro Version
+                    @endif
+                </strong>
+            </div>
             <div class="card-body p-3 m-0">
                 <table class="table table-responsive-sm table-hover table-striped table-bordered" id="datatable">
                     <thead>

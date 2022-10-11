@@ -18,7 +18,8 @@ class TaskFactory extends Factory
     {
         return [
             'name' => fake()->sentence($nbWords = 1),
-            'description' => fake()->paragraph($nbSentences = 2)
+            'description' => fake()->paragraph($nbSentences = 2),
+            'created_at' => fake()->dateTimeBetween('-1 week')
         ];
     }
 

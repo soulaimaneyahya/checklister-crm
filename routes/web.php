@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\CheckListController;
-use App\Http\Controllers\Admin\CheckListGroupController;
-use App\Http\Controllers\Admin\ImageController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\CheckListController;
 use App\Http\Controllers\PageController as HomePage;
+use App\Http\Controllers\Admin\CheckListGroupController;
+use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\CheckListController as CheckListUserController;
 
 /*
@@ -33,5 +34,12 @@ Route::group(['middleware' => ['auth', 'save_last_action_at']], function(){
         Route::resource('check_lists.tasks', TaskController::class)->except(['index', 'show']);
         Route::get('users', [UserController::class, 'index'])->name('users.index');
         Route::post('images', [ImageController::class, 'store'])->name('images.store');
+    });
+
+    Route::group(['middleware' => 'is_register'], function(){
+        Route::GET('checkout', [PaymentController::class, 'checkout'])->name('checkout');
+        Route::POST('payment', [PaymentController::class, 'payment'])->name('payment');
+        Route::GET('success', [PaymentController::class, 'success'])->name('success');
+        Route::GET('error', [PaymentController::class, 'error'])->name('error');
     });
 }); 

@@ -18,7 +18,8 @@ class PageFactory extends Factory
     {
         return [
             'title' => fake()->sentence($nbWords = 1),
-            'content' => fake()->paragraph($nbSentences = 3)
+            'content' => fake()->paragraph($nbSentences = 3),
+            'created_at' => fake()->dateTimeBetween('-2 weeks')
         ];
     }
 

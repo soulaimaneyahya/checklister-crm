@@ -45,4 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'last_action_at' => 'datetime'
     ];
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }
