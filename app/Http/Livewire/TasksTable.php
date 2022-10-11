@@ -15,7 +15,7 @@ class TasksTable extends Component
         return view('livewire.tasks-table', compact('tasks'));
     }
 
-    public function task_up($task_id)
+    public function task_up(int $task_id)
     {
         $task = Task::find($task_id);
         if ($task) {
@@ -28,7 +28,7 @@ class TasksTable extends Component
         }
     }
 
-    public function task_down($task_id)
+    public function task_down(int $task_id)
     {
         $task = Task::find($task_id);
         if ($task) {

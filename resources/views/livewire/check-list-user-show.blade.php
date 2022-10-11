@@ -3,12 +3,10 @@
     <tr class="task-description-toggle" data-id="{{ $task->id }}">
         <td>
             <div class="form-check">
-                <input class="form-check-input" 
-                type="radio" name="check" id="check" 
-                wire:click="complete_task({{ $task->id }})"
-                @if(in_array($task->id, $completed_tasks)) checked @endif
-                />
-            </div>  
+                <input class="form-check-input" type="checkbox" 
+                    wire:click="complete_task({{ $task->id }})" 
+                    @if(in_array($task->id, $completed_tasks)) checked="checked" @endif />
+            </div>
         </td>
         <td class="w-75">{{ $task->name }}</td>
         <td>

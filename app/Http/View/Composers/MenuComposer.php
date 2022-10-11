@@ -24,7 +24,11 @@ class MenuComposer
         $menu = CheckListGroup::with([
             'checklists' => function($query) {
                 $query->whereNull('user_id');
-            }
+            },
+            'checklists.tasks' => function($query) {
+                $query->whereNull('user_id');
+            },
+            'checklists.completed_tasks_count'
         ])->get();
         $view->with('admin_menu', $menu);
 

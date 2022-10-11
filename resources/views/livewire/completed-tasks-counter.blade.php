@@ -1,0 +1,1 @@
+<span class="badge bg-info mx-2">{{ $completed_tasks_count }}/{{ $tasks_count }}</span>

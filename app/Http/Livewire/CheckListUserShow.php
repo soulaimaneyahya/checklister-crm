@@ -33,7 +33,8 @@ class CheckListUserShow extends Component
             if ($user_task) {
                 if(is_null($user_task->completed_at)) {
                     $user_task->update(['completed_at' => now()]);
-                    dd('find user_Id');
+                    $this->completed_tasks[] = $task_id;
+                    $this->emit('task_complete_event', $task->check_list_id);
                 }
             } else {
                 $user_task = $task->replicate();
@@ -41,6 +42,8 @@ class CheckListUserShow extends Component
                 $user_task['task_id'] = $task_id;
                 $user_task['completed_at'] = now();
                 $user_task->save();
+                $this->completed_tasks[] = $task_id;
+                $this->emit('task_complete_event', $task->check_list_id);
             }
         }
     }

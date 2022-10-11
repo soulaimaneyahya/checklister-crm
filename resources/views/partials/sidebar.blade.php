@@ -43,7 +43,7 @@
             @foreach ($group->checklists as $list)
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" 
-                style="padding: 15px 85px;"
+                style="padding: 12px 65px;"
                 href="{{ route('admin.check_list_groups.check_lists.edit', [$group, $list]) }}">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
@@ -64,7 +64,7 @@
                 ])
                 @foreach ($group['checklists'] as $list)
                 <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" style="padding: 15px 85px;" href="{{ route('users.check_lists.show', $list['id']) }}">
+                    <a class="c-sidebar-nav-link" style="padding: 12px 65px;" href="{{ route('users.check_lists.show', $list['id']) }}">
                         <svg class="c-sidebar-nav-icon">
                             <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
                         </svg>
@@ -81,6 +81,11 @@
                             'show' => $list['is_updated']
                         ]) UPT
                         @endbadge
+                        @livewire('completed-tasks-counter', [
+                            'tasks_count' => count($list['tasks']),
+                            'completed_tasks_count' => count($list['completed_tasks_count']),
+                            'check_list_id' => $list['id'],
+                        ])
                     </a>
                 </li>
                 @endforeach

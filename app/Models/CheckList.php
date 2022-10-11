@@ -28,6 +28,13 @@ class CheckList extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function completed_tasks_count()
+    {
+        return $this->hasMany(Task::class)
+        ->where('user_id', auth()->id())
+        ->whereNotNull('completed_at');
+    }
+
     public static function boot()
     {
         parent::boot();
