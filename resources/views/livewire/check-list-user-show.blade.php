@@ -1,9 +1,13 @@
 <tbody>
-    @forelse ($checkList->tasks as $task)
+    @forelse ($checkList->tasks->whereNull('user_id') as $task)
     <tr class="task-description-toggle" data-id="{{ $task->id }}">
         <td>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="check" id="check">
+                <input class="form-check-input" 
+                type="radio" name="check" id="check" 
+                wire:click="complete_task({{ $task->id }})"
+                @if(in_array($task->id, $completed_tasks)) checked @endif
+                />
             </div>  
         </td>
         <td class="w-75">{{ $task->name }}</td>

@@ -14,7 +14,9 @@
                             <th></th>
                         </tr>
                     </thead>
-                    @livewire('check-list-user-show', ['checkList' => $checkList])
+                    @livewire('check-list-user-show', [
+                        'checkList' => $checkList
+                    ])
                 </table>
             </div>
         </div>

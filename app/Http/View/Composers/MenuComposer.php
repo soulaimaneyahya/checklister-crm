@@ -50,7 +50,11 @@ class MenuComposer
                 Carbon::create($group['updated_at'])->greaterThan($onclick_group);;
                 foreach ($group['checklists'] as &$check_list) {
                     // my current onclick list
-                    $onclick_list = $user_lists->where('check_list_id', $check_list['id'])->max('updated_at');
+                    $onclick_list = $user_lists->where('check_list_group_id', $group['id'])->where('check_list_id', $check_list['id'])->max('updated_at');
+                    if (is_null($onclick_list)) {
+                        // all of them are new
+                        $onclick_list = now()->subYear(10);
+                    }
                     $check_list['is_new'] = 
                     !($group['is_new']) &&
                     !($group['is_updated']) &&

@@ -19,7 +19,10 @@ class Task extends Model implements HasMedia
         'name',
         'description',
         'check_list_id',
-        'position'
+        'position',
+        'user_id',
+        'task_id',
+        'completed_at'
     ];
 
     public function checkList()
