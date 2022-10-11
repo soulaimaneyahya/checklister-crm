@@ -17,7 +17,7 @@ class isRegisterMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->payment && auth()->user()->payment->payment_status == "approved") {
-            abort(403);
+            abort(response('Unauthorized', 401));
         }
         return $next($request);
     }

@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\CheckList;
 use App\Models\CheckListGroup;
+use App\Models\Payment;
 use Database\Seeders\PageSeeder;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -18,6 +19,12 @@ abstract class TestCase extends BaseTestCase
     {
         $this->seed(PageSeeder::class);
         return User::factory()->admin()->create();
+    }
+
+    protected function john() : User
+    {
+        $this->seed(PageSeeder::class);
+        return User::factory()->john()->create();
     }
 
     protected function createDummyCheckListGroup(): CheckListGroup
@@ -38,5 +45,10 @@ abstract class TestCase extends BaseTestCase
     protected function createDummyTask(): Task
     {
         return Task::factory()->lorem_ipsum()->make();
+    }
+
+    protected function createDummyPayment(): Payment
+    {
+        return Payment::factory()->make();
     }
 }
