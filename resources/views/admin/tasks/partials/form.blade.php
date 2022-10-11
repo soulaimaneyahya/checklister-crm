@@ -8,7 +8,7 @@
             </div>
             <div class="form-group">
                 <label for="description">{{ __('Task Description') }}</label>
-                <textarea class="form-control" id="textarea-desc-ckeditor" name="description" maxlength="500" placeholder="Task Description">{{ old('description', $task->description ?? '') }}</textarea>
+                <textarea class="form-control" id="textarea-desc-ckeditor" name="description" maxlength="800" placeholder="Task Description">{{ old('description', $task->description ?? '') }}</textarea>
             </div>
             @if ($errors->any())
             <ul>

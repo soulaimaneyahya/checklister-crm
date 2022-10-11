@@ -53,6 +53,7 @@ class MenuComposer
                     $onclick_list = $user_lists->where('check_list_id', $check_list['id'])->max('updated_at');
                     $check_list['is_new'] = 
                     !($group['is_new']) &&
+                    !($group['is_updated']) &&
                     Carbon::create($check_list['created_at'])->greaterThan($onclick_list);
                     $check_list['is_updated'] = 
                     !($group['is_new']) &&

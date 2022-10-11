@@ -32,7 +32,7 @@ class UpdatePageRequest extends FormRequest
             ],
             'content' => [
                 'required',
-                'max:500'
+                'max:800'
             ]
         ];
     }

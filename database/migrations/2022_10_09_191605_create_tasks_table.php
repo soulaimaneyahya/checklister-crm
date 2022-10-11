@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('check_list_id')->constrained();
             $table->string('name');
-            $table->tinyText('description', 500);
+            $table->text('description', 800);
             $table->timestamps();
             $table->softDeletes();
         });

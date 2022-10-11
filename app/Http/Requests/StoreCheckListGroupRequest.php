@@ -27,7 +27,7 @@ class StoreCheckListGroupRequest extends FormRequest
             'name' => ['required', 'max:255', 'unique:check_list_groups'],
             'description' => [
                 'required',
-                'max:500'
+                'max:800'
             ]
         ];
     }

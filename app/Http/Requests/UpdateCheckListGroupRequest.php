@@ -31,7 +31,7 @@ class UpdateCheckListGroupRequest extends FormRequest
             ],
             'description' => [
                 'required',
-                'max:500'
+                'max:800'
             ]
         ];
     }

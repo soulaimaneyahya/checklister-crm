@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('check_list_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyText('description', 500);
+            $table->text('description', 800);
             $table->timestamps();
             $table->softDeletes();
         });

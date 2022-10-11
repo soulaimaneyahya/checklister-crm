@@ -33,7 +33,7 @@ class StoreTaskRequest extends FormRequest
             ],
             'description' => [
                 'required',
-                'max:500'
+                'max:800'
             ]
         ];
     }

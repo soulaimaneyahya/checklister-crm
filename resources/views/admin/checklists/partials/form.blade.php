@@ -8,7 +8,7 @@
             </div>
             <div class="form-group">
                 <label for="description">{{ __('CheckList Description') }}</label>
-                <textarea class="form-control" id="textarea-desc-ckeditor" name="description" maxlength="500" placeholder="CheckList Description">{{ old('description', $checkList->description ?? '') }}</textarea>
+                <textarea class="form-control" id="textarea-desc-ckeditor" name="description" maxlength="800" placeholder="CheckList Description">{{ old('description', $checkList->description ?? '') }}</textarea>
             </div>
             @if ($errors->storelist->any())
             <ul>
