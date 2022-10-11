@@ -14,7 +14,7 @@
                 @include('admin.tasks.partials.task')
             @empty
                 <tr>
-                    <td colspan="3" class="text-center">{{ __('No Tasks Found') }}</td>
+                    <td colspan="4" class="text-center">{{ __('No Tasks Found') }}</td>
                 </tr>
             @endforelse
             </tbody>

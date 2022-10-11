@@ -5,6 +5,21 @@
         <svg class="c-sidebar-nav-icon">
             <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-folder-open') }}"></use>
         </svg> {{ $group_name }}
+        @if (isset($is_admin) && !$is_admin)
+        @badge([
+            'type' => 'danger',
+            'text' => 'white',
+            'show' => $group['is_new']
+        ]) NEW
+        @endbadge
+        @badge([
+            'type' => 'danger',
+            'text' => 'white',
+            'show' => $group['is_updated']
+        ]) UPT
+        @endbadge
+        @endif
+        
     </a>
     <ul class="c-sidebar-nav-dropdown-items">
         {{ $slot }}

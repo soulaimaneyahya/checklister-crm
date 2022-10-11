@@ -69,6 +69,18 @@
                             <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list') }}"></use>
                         </svg>
                         <span>{{ $list['name'] }}</span>
+                        @badge([
+                            'type' => 'danger',
+                            'text' => 'white',
+                            'show' => $list['is_new']
+                        ]) NEW
+                        @endbadge
+                        @badge([
+                            'type' => 'danger',
+                            'text' => 'white',
+                            'show' => $list['is_updated']
+                        ]) UPT
+                        @endbadge
                     </a>
                 </li>
                 @endforeach

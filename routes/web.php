@@ -20,7 +20,7 @@ use App\Http\Controllers\User\CheckListController as CheckListUserController;
 Route::redirect('/', '/welcome');
 Auth::routes();
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth', 'save_last_action_at']], function(){
     Route::get('welcome', [HomePage::class, 'welcome'])->name('welcome');
     Route::get('consultation', [HomePage::class, 'consultation'])->name('consultation');
     Route::get('check_lists/{check_list}', [CheckListUserController::class, 'show'])->name('users.check_lists.show');

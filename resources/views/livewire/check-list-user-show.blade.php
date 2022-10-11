@@ -1,5 +1,5 @@
 <tbody>
-    @foreach ($checkList->tasks as $task)
+    @forelse ($checkList->tasks as $task)
     <tr class="task-description-toggle" data-id="{{ $task->id }}">
         <td>
             <div class="form-check">
@@ -19,5 +19,9 @@
     <tr class="d-none" id="task-description-{{ $task->id }}">
         <td colspan="3" class="p-3">{!! $task->description !!}</td>
     </tr>
-    @endforeach
+    @empty
+        <tr>
+            <td colspan="3" class="text-center">{{ __('No Tasks Found') }}</td>
+        </tr>
+    @endforelse
 </tbody>

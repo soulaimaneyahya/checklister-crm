@@ -11,7 +11,7 @@ class CheckListService
         int $user_id
     ): CheckList
     {
-        return CheckList::firstOrCreate(
+        $list = CheckList::firstOrCreate(
             [
                 'user_id' => $user_id,
                 'check_list_id' => $checkList->id,
@@ -22,5 +22,7 @@ class CheckListService
                 'check_list_group_id' => $checkList->check_list_group_id,
             ]
         );
+        $list->touch();
+        return $list;
     }
 }
