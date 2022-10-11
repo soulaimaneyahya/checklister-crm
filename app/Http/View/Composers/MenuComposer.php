@@ -28,7 +28,7 @@ class MenuComposer
             'checklists.tasks' => function($query) {
                 $query->whereNull('user_id');
             },
-            'checklists.completed_tasks_count'
+            'checklists.user_completed_tasks'
         ])->get();
         $view->with('admin_menu', $menu);
 

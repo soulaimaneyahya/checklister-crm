@@ -28,7 +28,7 @@ class CheckList extends Model
         return $this->hasMany(Task::class);
     }
 
-    public function completed_tasks_count()
+    public function user_completed_tasks()
     {
         return $this->hasMany(Task::class)
         ->where('user_id', auth()->id())

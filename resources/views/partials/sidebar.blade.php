@@ -83,7 +83,7 @@
                         @endbadge
                         @livewire('completed-tasks-counter', [
                             'tasks_count' => count($list['tasks']),
-                            'completed_tasks_count' => count($list['completed_tasks_count']),
+                            'user_completed_tasks' => count($list['user_completed_tasks']),
                             'check_list_id' => $list['id'],
                         ])
                     </a>

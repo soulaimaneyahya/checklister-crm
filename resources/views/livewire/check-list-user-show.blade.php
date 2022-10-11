@@ -1,6 +1,6 @@
 <tbody>
     @forelse ($checkList->tasks->whereNull('user_id') as $task)
-    <tr class="task-description-toggle" data-id="{{ $task->id }}">
+    <tr>
         <td>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" 
@@ -9,7 +9,7 @@
             </div>
         </td>
         <td class="w-75">{{ $task->name }}</td>
-        <td>
+        <td class="task-description-toggle" data-id="{{ $task->id }}">
             <svg id="task-caret-bottom-{{ $task->id }}" class="m-0 c-sidebar-nav-icon">
                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-caret-bottom') }}"></use>
             </svg>

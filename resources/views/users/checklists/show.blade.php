@@ -3,6 +3,14 @@
 @section('content')
 <div class="row p-0 m-0 justify-content-center">
     <div class="col-md-12 p-0 m-0">
+        @livewire('header-totals-count', [
+            'check_list_group_id' => $checkList->check_list_group_id,
+            'check_list_id' => $checkList->id
+        ])
+    </div>
+</div>
+<div class="row p-0 m-0 justify-content-center">
+    <div class="col-md-12 p-0 m-0">
         <div class="card">
             <div class="card-header">{{ __('Check List: ') }} ({{ $checkList->name }})</div>
             <div class="card-body p-3 m-0">

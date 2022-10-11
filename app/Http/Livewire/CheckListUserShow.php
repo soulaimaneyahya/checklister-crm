@@ -31,10 +31,13 @@ class CheckListUserShow extends Component
         if ($task) {
             $user_task = Task::where('task_id', $task_id)->first();
             if ($user_task) {
-                if(is_null($user_task->completed_at)) {
+                if (is_null($user_task['completed_at'])) {
                     $user_task->update(['completed_at' => now()]);
                     $this->completed_tasks[] = $task_id;
                     $this->emit('task_complete_event', $task->check_list_id);
+                } else {
+                    $user_task->delete();
+                    $this->emit('task_complete_event', $task->check_list_id, -1);
                 }
             } else {
                 $user_task = $task->replicate();
