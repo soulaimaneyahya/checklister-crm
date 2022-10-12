@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
-use App\Http\View\Composers\MenuComposer;
+use YouCan\Pay\YouCanPay;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+use App\Http\View\Composers\MenuComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(YouCanPay::class, function ($app) {
+            YouCanPay::setIsSandboxMode(true);
+
+            return YouCanPay::instance()->useKeys(config('ycpay.private_key'), config('ycpay.public_key'));
+        });
     }
 
     /**

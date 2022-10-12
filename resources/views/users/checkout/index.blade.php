@@ -28,7 +28,7 @@
                         <img src="https://pay.youcan.shop/images/ycpay-logo.svg" width="125" height="70" alt="no-image" class="mb-2">
                     </div>
                     <div>
-                        <a href="{{ route('standalone.show') }}" class="btn btn-dark mb-3">Pay $1 using YouCanPay</a>
+                        <a href="{{ $paymentUrl }}" class="btn btn-dark mb-3">Pay $1 using YouCanPay</a>
                     </div>
                 </div>
             </div>

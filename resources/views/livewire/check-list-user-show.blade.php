@@ -5,7 +5,7 @@
         <td colspan="3" class="text-center py-4">
             <h3 class="my-0 p-0">{{ __('You are limited at 5 tasks per checklist') }}</h3>
             <div>
-                <a href="{{ route('checkout') }}" class="btn btn-dark my-3">{{ __('Unlock all now') }}</a>
+                <a href="{{ route('standalone.show') }}" class="btn btn-dark my-3">{{ __('Unlock all now') }}</a>
             </div>
         </td>
     </tr>

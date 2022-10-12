@@ -2,5 +2,6 @@
 
 return [
     'public_key'  => env('YOUCAN_PAY_PUBLIC_KEY'),
-    'private_key' => env('YOUCAN_PAY_PRIVATE_KEY')
+    'private_key' => env('YOUCAN_PAY_PRIVATE_KEY'),
+    'currency' => env('YOUCAN_PAY_CURRENCY'),
 ];

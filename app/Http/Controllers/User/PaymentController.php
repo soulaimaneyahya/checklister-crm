@@ -21,11 +21,6 @@ class PaymentController extends Controller
         $this->gateway->setTestMode(true);
     }
 
-    public function checkout()
-    {
-        return view('users.checkout.index');
-    }
-
     public function payment(PaymentRequest $request)
     {
         // dd($request->amount);
@@ -71,14 +66,14 @@ class PaymentController extends Controller
                     return redirect()->route('welcome')->with('alert-success', 'Payment Process Success.');
                 }
             }
-            return redirect()->route('checkout')->with('alert-info', 'Payment Failed');
+            return redirect()->route('standalone.show')->with('alert-info', 'Payment Failed');
         } else{
-            return redirect()->route('checkout')->with('alert-info', 'Payment Failed');
+            return redirect()->route('standalone.show')->with('alert-info', 'Payment Failed');
         }
     }
 
     public function error()
     {
-        return redirect()->route('checkout')->with('alert-info', 'Payment Failed');
+        return redirect()->route('standalone.show')->with('alert-info', 'Payment Failed');
     }
 }

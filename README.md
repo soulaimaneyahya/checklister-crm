@@ -12,6 +12,7 @@ Creating an adminpanel-like system to manage checklists, tasks, CRUD operations 
 - Checklist Clone to User
 - Each user have their own CheckList inheritance from Admin Base CheckList
 <img src="./public/img/2.png" />
+<img src="./public/img/3.png" />
 
 ---
 
