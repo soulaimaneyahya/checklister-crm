@@ -16,7 +16,8 @@
         "omnipay/paypal": "^3.0",
         "spatie/laravel-medialibrary": "^10.5",
         "spatie/laravel-newsletter": "^4.11",
-        "yajra/laravel-datatables-oracle": "^10.0"
+        "yajra/laravel-datatables-oracle": "^10.0",
+        "youcanpay/payment-sdk": "^0.1.22"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

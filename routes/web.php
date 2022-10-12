@@ -42,4 +42,9 @@ Route::group(['middleware' => ['auth', 'save_last_action_at']], function(){
         Route::GET('success', [PaymentController::class, 'success'])->name('success');
         Route::GET('error', [PaymentController::class, 'error'])->name('error');
     });
-}); 
+
+    Route::group(['prefix' => 'standalone', 'as' => 'standalone.', 'middleware' => 'is_register'], function(){
+        Route::GET('/show', \App\Http\Controllers\User\Standalone\ShowFormController::class)->name('show');
+        Route::GET('/callback', \App\Http\Controllers\User\Standalone\CallbackController::class)->name('callback');
+    });
+});

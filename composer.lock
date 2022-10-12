@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ecc637d0f8e71a374089a20852d63ba9",
+    "content-hash": "6fdf3f9232a865928248ab86699d6685",
     "packages": [
         {
             "name": "brick/math",
@@ -7026,6 +7026,53 @@
                 }
             ],
             "time": "2022-10-10T03:00:08+00:00"
+        },
+        {
+            "name": "youcanpay/payment-sdk",
+            "version": "v0.1.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NextmediaMa/youcan-payment-php-sdk.git",
+                "reference": "1468c78cb61fbdbe779c4e92873ff026d3614cef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NextmediaMa/youcan-payment-php-sdk/zipball/1468c78cb61fbdbe779c4e92873ff026d3614cef",
+                "reference": "1468c78cb61fbdbe779c4e92873ff026d3614cef",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "nesbot/carbon": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "^6.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "YouCan\\Pay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Younes RAFIE",
+                    "email": "younes@youcan.shop"
+                }
+            ],
+            "description": "YouCan Pay SDK",
+            "support": {
+                "issues": "https://github.com/NextmediaMa/youcan-payment-php-sdk/issues",
+                "source": "https://github.com/NextmediaMa/youcan-payment-php-sdk/tree/v0.1.22"
+            },
+            "time": "2022-03-30T11:02:31+00:00"
         }
     ],
     "packages-dev": [
