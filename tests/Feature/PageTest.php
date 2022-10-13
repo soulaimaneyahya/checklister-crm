@@ -11,8 +11,8 @@ class PageTest extends TestCase
 
     public function test_edit()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         $page = $this->createDummyPage();
 
         $response = $this->get("/admin/pages/{$page->id}/edit");
@@ -25,8 +25,8 @@ class PageTest extends TestCase
 
     public function test_update_valid()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         $page = $this->createDummyPage();
         // assert
         $this->assertDatabaseHas('pages', [

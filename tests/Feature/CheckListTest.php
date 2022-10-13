@@ -15,16 +15,16 @@ class CheckListTest extends TestCase
      */
     public function test_home()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         
         $response = $this->get('/welcome');
         $response->assertStatus(200);
     }
     public function test_delete()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         
         $group = $this->createDummyCheckListGroup();
 

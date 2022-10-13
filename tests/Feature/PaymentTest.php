@@ -15,14 +15,14 @@ class PaymentTest extends TestCase
     public function test_valid_payment()
     {
         // creating list
-        $admin = $this->user();
+        $admin = $this->admin();
         $this->actingAs($admin);
         $group = $this->createDummyCheckListGroup();
         $list = $this->createDummyCheckList();
         $list->check_list_group_id = $group->id;
         $list->save();
         $user = $this->john();
-        $this->actingAs($user);
+        $this->actingAs($admin);
         $tasks = Task::factory(10)->create([
             'check_List_id' => $list->id
         ]);
@@ -44,8 +44,8 @@ class PaymentTest extends TestCase
             'task_id' => $task->task_id
         ]);
 
-        // checkout payment
-        $response = $this->get("/checkout");
+        // standalone/show payment
+        $response = $this->get("/standalone/show");
         $response->assertStatus(200);
 
         $payment = $this->createDummyPayment();
@@ -69,10 +69,10 @@ class PaymentTest extends TestCase
 
         if ($register_user->payment->payment_status == "approved") {
             // dump($register_user->payment->payment_status);
-            $this->get("/checkout")
+            $this->get("/standalone/show")
             ->assertStatus(200);
         } else {
-            $response = $this->get("/checkout");
+            $response = $this->get("/standalone/show");
             // dump($register_user->payment->payment_status);
             $response->assertStatus(200);
         }

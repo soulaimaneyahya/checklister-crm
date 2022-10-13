@@ -15,7 +15,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
         
-    protected function user() : User
+    protected function admin() : User
     {
         $this->seed(PageSeeder::class);
         return User::factory()->admin()->create();

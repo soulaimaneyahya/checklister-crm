@@ -15,8 +15,8 @@ class CheckListGroupTest extends TestCase
      */
     public function test_home()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         
         $response = $this->get('/welcome');
         $response->assertStatus(200);
@@ -24,8 +24,8 @@ class CheckListGroupTest extends TestCase
     
     public function test_create()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         $response = $this->get("/admin/check_list_groups/create");
         $response->assertSeeText("Create Check List Group");
         $response->assertSeeText("Name");
@@ -35,8 +35,8 @@ class CheckListGroupTest extends TestCase
 
     public function test_store_valid()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         // Arange
         $params = [
             'id' => 1,
@@ -56,8 +56,8 @@ class CheckListGroupTest extends TestCase
 
     public function test_store_fail()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         $params = [
             'name' => '',
             'description' => ''
@@ -72,8 +72,8 @@ class CheckListGroupTest extends TestCase
 
     public function test_edit()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         $group = $this->createDummyCheckListGroup();
         // assert
         $this->assertDatabaseHas('check_list_groups', [
@@ -92,8 +92,8 @@ class CheckListGroupTest extends TestCase
 
     public function test_update_valid()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         $group = $this->createDummyCheckListGroup();
         // assert
         $this->assertDatabaseHas('check_list_groups', [
@@ -122,8 +122,8 @@ class CheckListGroupTest extends TestCase
 
     public function test_delete()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         $group = $this->createDummyCheckListGroup();
         // assert
         $this->assertDatabaseHas('check_list_groups', [

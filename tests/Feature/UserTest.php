@@ -12,7 +12,7 @@ class UserTest extends TestCase
     public function test_home()
     {
         // creating list
-        $admin = $this->user();
+        $admin = $this->admin();
         $this->actingAs($admin);
         $group = $this->createDummyCheckListGroup();
         $list = $this->createDummyCheckList();
@@ -20,7 +20,7 @@ class UserTest extends TestCase
         $list->save();
 
         $user = $this->john();
-        $this->actingAs($user);
+        $this->actingAs($admin);
 
         $task = $this->createDummyTask();
         $task->check_list_id = $list->id;

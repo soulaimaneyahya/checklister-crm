@@ -15,8 +15,8 @@ class TaskTest extends TestCase
      */
     public function test_home()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         
         $response = $this->get('/welcome');
         $response->assertStatus(200);
@@ -28,8 +28,8 @@ class TaskTest extends TestCase
      */
     public function test_tasks()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         
         $group = $this->createDummyCheckListGroup();
         $list = $this->createDummyCheckList();
@@ -48,8 +48,8 @@ class TaskTest extends TestCase
 
     public function test_store_valid()
     {
-        $user = $this->user();
-        $this->actingAs($user);
+        $admin = $this->admin();
+        $this->actingAs($admin);
         
         $group = $this->createDummyCheckListGroup();
         $list = $this->createDummyCheckList();
