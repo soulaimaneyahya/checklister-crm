@@ -16,8 +16,9 @@ class isRegisterMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->payment && auth()->user()->payment->payment_status == "approved") {
-            abort(403);
+        if (auth()->check() && auth()->user()->payment && auth()->user()->payment->payment_status == "approved") {
+            // abort(403);
+            echo "403";
         }
         return $next($request);
     }

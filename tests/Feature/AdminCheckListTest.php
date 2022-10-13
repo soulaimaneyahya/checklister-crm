@@ -11,11 +11,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class AdminCheckListTest extends TestCase
 {
     use RefreshDatabase;
+    
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $admin = $this->admin();
+        $this->actingAs($admin);
+    }
 
     public function test_admin_store_check_list_group()
     {
-        $admin = $this->admin();
-        $this->actingAs($admin);
         // Arange
         $params = [
             'id' => 1,
@@ -35,8 +41,6 @@ class AdminCheckListTest extends TestCase
 
     public function test_admin_update_check_list_group()
     {
-        $admin = $this->admin();
-        $this->actingAs($admin);
         // Arange
         $group = $this->createDummyCheckListGroup();
         $params = [
@@ -56,8 +60,6 @@ class AdminCheckListTest extends TestCase
 
     public function test_admin_generate_pages()
     {
-        $admin = $this->admin();
-        $this->actingAs($admin);
         // Arange
         $group = $this->createDummyCheckListGroup();
         $CheckListGroup = CheckListGroup::where('name', $group->name)->first();
@@ -76,5 +78,49 @@ class AdminCheckListTest extends TestCase
                 $response->assertSeeText($value['name']);
             }
         }
+
+        // deleting checklist group
+        $this->delete("/admin/check_list_groups/{$group->id}")
+            ->assertStatus(302)
+            ->assertSessionHas('alert-info')
+            ->assertRedirect("/admin/check_list_groups/create");
+        $this->assertEquals(session('alert-info'), 'CheckListGroup Deleted');
+
+        $menu = (new MenuService())->get_menu();
+        $this->assertEquals(0, $menu['admin_menu']->where('name', 'Lorem ipsum.')->count());
+        $CheckListGroup = CheckListGroup::where('name', $group->name)->first();
+        $this->assertNull($CheckListGroup);
+
+        $this->assertSoftDeleted('check_list_groups', [
+            'name' => 'Lorem ipsum.',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et fermentum dui. Ut orci quam.'
+        ]);
+
+    }
+
+    public function test_manage_checklists()
+    {
+        $group = $this->createDummyCheckListGroup();
+
+        $checklist_url = "/admin/check_list_groups/{$group->id}/check_lists";
+
+        // Test Creating the checklist
+        $params = [
+            'id' => 1,
+            'name' => 'Lorem ipsum.',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et fermentum dui. Ut orci quam.'
+        ];
+        $this->get($checklist_url . "/create")
+            ->assertStatus(200);
+        $response = $this->post($checklist_url, $params);
+        $response->assertRedirect("/admin/check_list_groups/{$group->id}/check_lists/{$params['id']}/edit");
+
+        $list = CheckList::where('check_list_group_id', $group->id)->first();
+        $this->assertNotNull($list);
+        
+        $menu = (new MenuService())->get_menu();
+        // let's assert $list belongs to menu
+        /* contains() method checks whether Laravel Collections contains certain given value or not */
+        $this->assertTrue($menu['admin_menu']->first()->checklists->contains($list));
     }
 }

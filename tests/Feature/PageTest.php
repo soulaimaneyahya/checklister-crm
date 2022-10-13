@@ -8,11 +8,17 @@ use Tests\TestCase;
 class PageTest extends TestCase
 {
     use RefreshDatabase;
+    
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $admin = $this->admin();
+        $this->actingAs($admin);
+    }
 
     public function test_edit()
     {
-        $admin = $this->admin();
-        $this->actingAs($admin);
         $page = $this->createDummyPage();
 
         $response = $this->get("/admin/pages/{$page->id}/edit");
@@ -25,8 +31,6 @@ class PageTest extends TestCase
 
     public function test_update_valid()
     {
-        $admin = $this->admin();
-        $this->actingAs($admin);
         $page = $this->createDummyPage();
         // assert
         $this->assertDatabaseHas('pages', [

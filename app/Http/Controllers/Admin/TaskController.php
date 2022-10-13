@@ -47,6 +47,6 @@ class TaskController extends Controller
         // re-order on delete
         $checkList->tasks()->whereNull('user_id')->where('position', '>', $task->position)->decrement('position', 1);
         $task->delete();
-        return redirect()->route('admin.check_list_groups.check_lists.edit', [$checkList->check_list_group_id, $checkList]);
+        return redirect()->route('admin.check_list_groups.check_lists.edit', [$checkList->check_list_group_id, $checkList])->with('alert-info', 'Task Deleted');
     }
 }

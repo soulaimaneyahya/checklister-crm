@@ -14,7 +14,5 @@ class MenuComposer
         $view->with('user_menu', $menu['user_menu']);
         $view->with('admin_menu', $menu['admin_menu']);
         $view->with('pages', $menu['pages']);
-
-        
     }
 }

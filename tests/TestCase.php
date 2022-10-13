@@ -47,8 +47,10 @@ abstract class TestCase extends BaseTestCase
         return Task::factory()->lorem_ipsum()->make();
     }
 
-    protected function createDummyPayment(): Payment
+    protected function createDummyPayment($user_id): Payment
     {
-        return Payment::factory()->make();
+        return Payment::factory()->create([
+            'user_id' => $user_id
+        ]);
     }
 }
