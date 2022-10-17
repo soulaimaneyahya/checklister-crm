@@ -113,7 +113,7 @@ class AdminCheckListTest extends TestCase
         $this->get($checklist_url . "/create")
             ->assertStatus(200);
         $response = $this->post($checklist_url, $params);
-        $response->assertRedirect("/admin/check_list_groups/{$group->id}/check_lists/{$params['id']}/edit");
+        $response->assertRedirect($checklist_url . "/{$params['id']}/edit");
 
         $list = CheckList::where('check_list_group_id', $group->id)->first();
         $this->assertNotNull($list);

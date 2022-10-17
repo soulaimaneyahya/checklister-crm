@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\CheckList;
 use Tests\TestCase;
 use App\Models\Task;
 use App\Models\User;
@@ -12,18 +13,19 @@ class PaymentTest extends TestCase
     use RefreshDatabase;
 
     public $user;
+    public $admin;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $user = $this->john();
-        $this->actingAs($user);
-        $this->user = $user;
+        $this->user = $this->john();
+        $this->admin = $this->admin();
     }
 
     public function test_valid_payment()
     {
+        $this->actingAs($this->admin);
         $group = $this->createDummyCheckListGroup();
         $list = $this->createDummyCheckList();
         $list->check_list_group_id = $group->id;
@@ -46,6 +48,8 @@ class PaymentTest extends TestCase
             'task_id' => $task->task_id
         ]);
 
+        $this->actingAs($this->user);
+        $list = CheckList::find($list->id);
         $response = $this->get("/check_lists/{$list->id}");
         $response->assertStatus(200);
         $response->assertSeeText("CheckList: {$list->name}");

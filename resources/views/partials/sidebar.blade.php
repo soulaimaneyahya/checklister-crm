@@ -82,8 +82,8 @@
                         ]) UPT
                         @endbadge
                         @livewire('completed-tasks-counter', [
-                            'tasks_count' => count($list['tasks']),
-                            'user_completed_tasks' => count($list['user_completed_tasks']),
+                            'tasks_count' => $list['tasks_count'],
+                            'user_completed_tasks' => $list['user_completed_tasks'],
                             'check_list_id' => $list['id'],
                         ])
                     </a>

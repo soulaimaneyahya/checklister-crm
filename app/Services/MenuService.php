@@ -58,6 +58,8 @@ class MenuService
                     !($group['is_updated']) &&
                     !($check_list['is_new']) &&
                     Carbon::create($check_list['updated_at'])->greaterThan($onclick_list);
+                    $check_list['tasks_count'] = count($check_list['tasks']);
+                    $check_list['user_completed_tasks'] = count($check_list['user_completed_tasks']);
                 }
                 $groups[] = $group;
             }
